@@ -55,8 +55,8 @@ jobs:
         with:
           project_id: broad-dsp-lrma
           workload_identity_provider: projects/602335226495/locations/global/workloadIdentityPools/github/providers/aou-multiomic
+          service_account: ${{ vars.SERVICE_ACCOUNT }}
           token_format: access_token
-          access_token_lifetime: 300s
 
       - name: Login to Artifact Registry
         uses: docker/login-action@v3
