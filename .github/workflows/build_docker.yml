@@ -25,11 +25,15 @@ jobs:
             docker/**
       - name: Compile list of dockers to rebuild
         id: dockers-changed-matrix
-        if: steps.changed-files.outputs.any_changed == 'true'
         env:
           ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
         run: |
-          python3 ci/build_matrix_docker_images.py --github-output <<<"${ALL_CHANGED_FILES}"
+          # Build all dockers when publishing a new version tag
+          if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == "true" ]]; then
+            ls -1 docker/**/Dockerfile | python3 ci/build_matrix_docker_images.py --github_output
+          else
+            python3 ci/build_matrix_docker_images.py --github-output <<<"${ALL_CHANGED_FILES}"
+          fi
 
   build-dockers:
     name: Build changed docker images
@@ -84,12 +88,13 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+        with:
+          platforms: linux/amd64, linux/arm64
 
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: .
-          image: ${{ matrix.dockerfile }}
+          context: ${{ matrix.context }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

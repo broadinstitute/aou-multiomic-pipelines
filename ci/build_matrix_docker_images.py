@@ -87,6 +87,7 @@ def main():
     for img_name in docker_images:
         output.append({
             "dockerfile": (repo_docker_root / img_name / "Dockerfile").as_posix(),
+            "context": (DOCKER_IMGS_PATH / img_name).as_posix(),
             "img_name": GAR_REPOSITORY + img_name
         })
 
