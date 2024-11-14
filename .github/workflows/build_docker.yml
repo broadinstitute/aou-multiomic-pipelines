@@ -30,7 +30,7 @@ jobs:
         run: |
           # Build all dockers when publishing a new version tag
           if [[ "${{ startsWith(github.ref, 'refs/tags/v') }}" == "true" ]]; then
-            ls -1 docker/**/Dockerfile | python3 ci/build_matrix_docker_images.py --github_output
+            ls -1 docker/**/Dockerfile | python3 ci/build_matrix_docker_images.py --github-output
           else
             python3 ci/build_matrix_docker_images.py --github-output <<<"${ALL_CHANGED_FILES}"
           fi
