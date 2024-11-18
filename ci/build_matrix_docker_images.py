@@ -18,7 +18,7 @@ from pathlib import Path
 DOCKER_IMGS_PATH = Path("docker")
 
 # Google Artifact Registry repository URL
-GAR_REPOSITORY = "us-central1-docker.pkg.dev/broad-dsp-lrma/aou-multiomics/"
+GAR_REPOSITORY = "us-central1-docker.pkg.dev/broad-dsp-lrma/aou-multiomic/"
 
 
 def find_repo_root(fname: Path):
