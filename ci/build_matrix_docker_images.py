@@ -21,7 +21,7 @@ DOCKER_IMGS_PATH = Path("docker")
 GAR_REPOSITORY = "us-central1-docker.pkg.dev/broad-dsp-lrma/aou-multiomic/"
 
 
-def find_repo_root(fname: Path):
+def find_repo_root(fname: Path) -> Path:
     if fname.is_file():
         fname = fname.parent
 
@@ -32,9 +32,11 @@ def find_repo_root(fname: Path):
             return fname
 
         fname = fname.parent
+        
+    return fname
 
 
-def find_docker_root(fname):
+def find_docker_root(fname) -> Path | None:
     """Finds the first parent folder of `fname` that contains a `Dockerfile`."""
 
     if fname.name == 'Dockerfile':
