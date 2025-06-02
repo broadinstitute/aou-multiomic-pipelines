@@ -1,0 +1,8 @@
+version: 1.2
+workflows:
+  - name: PCAWithBuyaEyuboglu
+    subclass: WDL
+    primaryDescriptorPath: /wdl/workflows/tech_agnostic/pca_buya_eyuboglu.wdl
+    
+    
+  
