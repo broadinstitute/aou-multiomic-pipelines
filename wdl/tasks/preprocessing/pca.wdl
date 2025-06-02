@@ -24,7 +24,7 @@ task PCA {
         output_url: "URL to save the PCA results. If not specified, the input file will be overwritten with the results."
         num_components: "Number of principal components to compute. If not specified, defaults to the minimum of the number of samples and features."
         
-        runtime_attr: "Optional runtime attributes for the task, including memory, CPU cores, disk space, and Docker image."
+        runtime_attr_override: "Optional runtime attributes for the task, including memory, CPU cores, disk space, and Docker image."
     }
     
     
@@ -91,7 +91,7 @@ task PermutedPCA {
         input_layer: "AnnData layer to use for PCA. If not specified, the data in the .X attribute will be used."
         num_components: "Number of principal components to compute. If not specified, defaults to the minimum of the number of samples and features."
         
-        runtime_attr: "Optional runtime attributes for the task, including memory, CPU cores, disk space, and Docker image."
+        runtime_attr_override: "Optional runtime attributes for the task, including memory, CPU cores, disk space, and Docker image."
     }
     
     
