@@ -3,6 +3,12 @@ version 1.0
 import "../../tasks/preprocessing/pca.wdl" as PCA
 
 workflow PCAWithBuyaEyuboglu {
+    meta {
+        description: "Perform PCA on an AnnData dataset and determine the number of 'significant' components using the Buya & Eyuboglo method."
+        author: "Lucas van Dijk"
+        email: "lvandijk@broadinstitute.org"
+    }
+    
     input {
         String input_file
         String? input_layer
